@@ -6,8 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class armsDown extends Command {
-  public armsDown() {
+public class MoveArms extends Command {
+  public MoveArms() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
