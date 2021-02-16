@@ -3,6 +3,10 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -11,9 +15,51 @@ public class Climb extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
+  public CANSparkMax motor775 = new CANSparkMax(RobotMap.motor775Port, MotorType.kBrushed);
+  public CANSparkMax rightNEO = new CANSparkMax(RobotMap.rightNEOPort, MotorType.kBrushed);
+  public CANSparkMax leftNEO = new CANSparkMax(RobotMap.leftNEOPort, MotorType.kBrushed);
+	public DoubleSolenoid leftPiston = new DoubleSolenoid(RobotMap.leftPistonPort1, RobotMap.leftPistonPort2);
+  public DoubleSolenoid rightPiston = new DoubleSolenoid(RobotMap.rightPistonPort1, RobotMap.rightPistonPort2);
+
+
+  public Climb(){
+  }
+  
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new MoveArms());
   }
+
+  public void extend(){
+    leftPiston.set(DoubleSolenoid.Value.kForward);
+    rightPiston.set(DoubleSolenoid.Value.kForward);
+  }
+
+  public void retract(){
+    rightPiston.set(DoubleSolenoid.Value.kReverse);
+    leftPiston.set(DoubleSolenoid.Value.kReverse);
+  }
+
+  public void moveArms(){
+    double armJoy = OI.operJoy.getRawAxis(1);	
+    rightNEO.set(armJoy);
+    leftNEO.set(armJoy);
+  }
+
+  public void moveArmsDown(){
+    motor775.set(1.0); //we are not sure about the speed (forward or reverse)
+    Robot.drivetrain.driveStraight();
+  }
+
+  public void stop(){
+	  rightNEO.set(0.0);
+	  leftNEO.set(0.0);
+	  motor775.set(0.0);
+  }
+
+  
+  
 }
