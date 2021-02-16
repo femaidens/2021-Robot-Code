@@ -24,9 +24,9 @@ public class Shooter extends Subsystem {
 
 	public CANPIDController pidController = shooterNEO.getPIDController();
 
-	private final double yDisplacement;
+	private final double yDisplacement = 0;
 	//private final double xDisplacement;
-  private final double angle;
+  private final double angle = 0;
   
   public Shooter(){
 		pidController.setP(0.0);
