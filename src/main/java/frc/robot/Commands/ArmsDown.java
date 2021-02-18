@@ -3,47 +3,51 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-import frc.robot.Robot;
+package frc.robot.commands;
+import frc.Robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Shoot extends Command {
-
-  private double speed;
-
-  public Shoot() {
+public class ArmsDown extends Command {
+  private final double dist = 100; //measure distance to climb
+  public ArmsDown() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.shooter);
+    // eg. requires(chassis);
+    requires(Robot.Climb);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    speed = Robot.shooter.calculateSpeed();
+    Robot.climb.extend();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.shooter.spinWheel(speed);
+    Robot.climb.moveArmsDown();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return(Robot.drivetrain.frontRight.getSelectedSensorPosition() >= dist && Robot.drivetrain.frontLeft.getSelectedSensorPosition() >=  dist);
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.shooter.stop();
+    Robot.climb.stop();
+    Robot.drivetrain.stop();
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.shooter.stop();
+    Robot.climb.stop();
+    Robot.drivetrain.stop();
+
   }
 }
