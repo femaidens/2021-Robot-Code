@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-package frc.robot.commands;
+package frc.robot.Commands;
 import frc.robot.Robot;
 
 
