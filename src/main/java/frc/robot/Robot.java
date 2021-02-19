@@ -3,6 +3,19 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+//import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.MiddleAuton;
+import frc.robot.commands.DriveTeleop;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Climb;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.ColorWheel;
+import frc.robot.subsystems.Hopper;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -15,10 +28,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
-  private String m_autoSelected;
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  // private static final String kDefaultAuto = “Default”;
+	// private static final String kCustomAuto = “My Auto”;
+	//private String m_autoSelected;
+  // missing autoselected thing
+	//private final SendableChooser<String> m_chooser = new SendableChooser<>(); // setting SmartDashboard
+	public static Drivetrain drivetrain;
+	public static Climb climb;
+	public static Intake intake;
+	public static Shooter shooter;
+	public static Hopper hopper;
+	public static ColorWheel colorWheel;
+	public static OI oiMap;
+	public static Timer timer;
+	Command autonomousCommand;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -26,9 +49,28 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
+    System.out.println("RobotInit");
+    drivetrain = new Drivetrain();
+    climb = new Climb();
+    intake = new Intake();
+    shooter = new Shooter();
+    colorWheel = new ColorWheel();
+    hopper = new Hopper();
+	  oiMap = new OI();
+  	oiMap.bindButtons();
+  	System.out.println("init");
+    drivetrain.setDefaultCommand(new DriveTeleop());
+    climb.setDefaultCommand(new MoveArms());
+    hopper.setDefaultCommand(new Counting());
+    Drivetrain.gyro.calibrate();
+    Drivetrain.gyro.reset();
+
+    //autonomousCommand = new LeftAuton();
+	  autonomousCommand = new MiddleAuton();
+  	//autonomousCommand = new RightAuton();
+
+    timer.reset();
+
   }
 
   /**
@@ -39,7 +81,8 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+  }
 
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
@@ -53,32 +96,37 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
+    timer.start();
+    if (autonomousCommand != null){
+	  	autonomousCommand.start();
+  	}
+	  //m_autoSelected = m_chooser.getSelected();
+	  //System.out.println("Auto selected: " + m_autoSelected);
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
+    Scheduler.getInstance().run(); //runs everything
+
+  	if(timer.get() >= 15.0){
+		  autonomousCommand.cancel();
+  	}
   }
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    if (autonomousCommand != null){
+      autonomousCommand.cancel();
+    }  
+  }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    Scheduler.getInstance().run();
+  }
 
   /** This function is called once when the robot is disabled. */
   @Override
