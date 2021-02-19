@@ -39,6 +39,7 @@ public class RobotMap {
     public static final int middleLeftPort	= 20;
     public static final int rearRightPort = 21;
     public static final int rearLeftPort = 22;
+    public static final int gyroPort = 30;
 
     //intake
     public static final int intakePistonPort1 = 23;
