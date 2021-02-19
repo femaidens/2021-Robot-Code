@@ -4,51 +4,50 @@
 
 package frc.robot.Commands;
 import frc.robot.Robot;
+
+
 import edu.wpi.first.wpilibj.command.Command;
-import java.util.Scanner;
 
-public class Stage3 extends Command {
-  Color target;
+public class DriveStraightDistance extends Command {
 
-  public Stage3() {
-    requires(Robot.colorwheel);
+  private double dist;
+
+  public DriveStraightDistance(double d) {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
+    requires(Robot.drivetrain);
+		dist = d;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Scanner scan = new Scanner(System.in); 
-		System.out.println("Enter the index (the first index is 0): ");
-		int index = scan.nextInt();
-		target = Robot.colorwheel.list.get((index + 2) % 4);
+    Robot.drivetrain.frontRight.setSelectedSensorPosition(0.0);
+		Robot.drivetrain.frontLeft.setSelectedSensorPosition(0.0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.colorwheel.spinWheel();
+    Robot.drivetrain.driveStraight();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    Color col = Robot.colorwheel.colorSensorV3.getColor();
-    ColorMatchResult match = Robot.colorwheel.m_colorMatcher.matchClosestColor(col);
-    return match.color == target;
-
+    return(Robot.drivetrain.frontRight.getSelectedSensorPosition() >= dist && Robot.drivetrain.frontLeft.getSelectedSensorPosition() >=  dist);
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.colorwheel.stopWheel();
+    Robot.drivetrain.stop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.colorwheel.stopWheel();
-
+    Robot.drivetrain.stop();
   }
 }

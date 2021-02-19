@@ -4,6 +4,7 @@
 
 package frc.robot.Subsystems;
 
+import frc.robot.Robot;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
