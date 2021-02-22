@@ -3,7 +3,12 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.Subsystems;
+
+import frc.robot.OI;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.Commands.*;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -22,10 +27,8 @@ public class Climb extends Subsystem {
 	public DoubleSolenoid leftPiston = new DoubleSolenoid(RobotMap.leftPistonPort1, RobotMap.leftPistonPort2);
   public DoubleSolenoid rightPiston = new DoubleSolenoid(RobotMap.rightPistonPort1, RobotMap.rightPistonPort2);
 
-
   public Climb(){
   }
-  
 
   @Override
   public void initDefaultCommand() {
@@ -60,7 +63,4 @@ public class Climb extends Subsystem {
 	  leftNEO.set(0.0);
 	  motor775.set(0.0);
   }
-
-  
-  
 }

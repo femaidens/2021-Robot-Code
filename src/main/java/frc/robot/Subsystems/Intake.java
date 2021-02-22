@@ -3,11 +3,16 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.Subsystems;
+
+import frc.robot.Robot;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Commands.*;
+import frc.robot.Subsystems.*;
 
 /** Add your docs here. */
 public class Intake extends Subsystem {

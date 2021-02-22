@@ -4,13 +4,16 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.I2C.Port;
+
 /** Add your docs here. */
 public class RobotMap {
     //joystick
 	public static final int drivePort = 0;
-	public static static final int operPort = 1; 
+	public static final int operPort = 1; 
 
-//shooter
+    //shooter
 	public static final int shooterNEOPort = 2;
 	public static final int hopperExit1Port = 3;
 	public static final int hopperExit2Port = 4;
@@ -50,7 +53,4 @@ public class RobotMap {
 	public static final int colorMotorPort = 26;
     public static final int colorPistonPort1 = 27;
     public static final int colorPistonPort2 = 28; 
-    public static final int colorSensorPort = 29;
-
-
 }

@@ -3,19 +3,15 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.CommandGroups.*;
 //import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.MiddleAuton;
-import frc.robot.commands.DriveTeleop;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Climb;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.ColorWheel;
-import frc.robot.subsystems.Hopper;
+import frc.robot.Commands.*;
+import frc.robot.Subsystems.*;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -39,7 +35,6 @@ public class Robot extends TimedRobot {
 	public static Shooter shooter;
 	public static Hopper hopper;
 	public static ColorWheel colorWheel;
-	public static OI oiMap;
 	public static Timer timer;
 	Command autonomousCommand;
 
@@ -56,14 +51,11 @@ public class Robot extends TimedRobot {
     shooter = new Shooter();
     colorWheel = new ColorWheel();
     hopper = new Hopper();
-	  oiMap = new OI();
-  	oiMap.bindButtons();
+  	OI.bindButtons();
   	System.out.println("init");
-    drivetrain.setDefaultCommand(new DriveTeleop());
-    climb.setDefaultCommand(new MoveArms());
-    hopper.setDefaultCommand(new Counting());
-    Drivetrain.gyro.calibrate();
-    Drivetrain.gyro.reset();
+
+    drivetrain.gyro.calibrate();
+    drivetrain.gyro.reset();
 
     //autonomousCommand = new LeftAuton();
 	  autonomousCommand = new MiddleAuton();

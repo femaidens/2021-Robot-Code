@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.OI;
 import frc.robot.RobotMap;
+import frc.robot.Commands.DriveTeleop;
 
 /** Add your docs here. */
 public class Drivetrain extends Subsystem {
@@ -26,7 +27,10 @@ public class Drivetrain extends Subsystem {
 	public TalonFX middleRight = new TalonFX(RobotMap.middleRightPort);
 
 	public AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
-	
+  
+  public final int PID_TYPE = 0;
+  public final int DEFAULT_TIMEOUT = 5;
+
 	public Drivetrain() {
 		frontRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
     middleRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
@@ -46,12 +50,12 @@ public class Drivetrain extends Subsystem {
 	public void driveTeleop(){
 		double leftJoy = OI.driveJoy.getRawAxis(1);
 		double rightJoy = OI.driveJoy.getRawAxis(5);
-		frontLeft.set(leftJoy);
-    middleLeft.set(leftJoy);
-    rearLeft.set(leftJoy);
-		frontRight.set(rightJoy);
-	  middleRight.set(rightJoy);
-    rearRight.set(rightJoy);
+		frontLeft.set(ControlMode.PercentOutput, leftJoy);
+    middleLeft.set(ControlMode.PercentOutput, leftJoy);
+    rearLeft.set(ControlMode.PercentOutput, leftJoy);
+		frontRight.set(ControlMode.PercentOutput, rightJoy);
+	  middleRight.set(ControlMode.PercentOutput, rightJoy);
+    rearRight.set(ControlMode.PercentOutput, rightJoy);
   }
 
   public void auton(double speed){
@@ -102,7 +106,7 @@ public class Drivetrain extends Subsystem {
           rearRight.set(ControlMode.PercentOutput, -0.5);
           rearLeft.set(ControlMode.PercentOutput, 0.5);
         } else {
-          frontRight.set(0.5);
+          frontRight.set(ControlMode.PercentOutput, 0.5);
           frontLeft.set(ControlMode.PercentOutput, -0.5);
           middleRight.set(ControlMode.PercentOutput, 0.5);
           middleLeft.set(ControlMode.PercentOutput, -0.5);
