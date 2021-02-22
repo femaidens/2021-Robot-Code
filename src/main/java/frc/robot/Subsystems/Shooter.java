@@ -40,10 +40,9 @@ public class Shooter extends Subsystem {
     pidController.setIZone(0.0);
   }
 
-  public void spinWheel() {	
+  public void spinWheel(double speed) {	
     hopperExit1.set(0.8);	
     hopperExit2.set(0.8);
-    double speed = calculateSpeed();
     pidController.setReference(speed, ControlType.kVelocity);
   }
     

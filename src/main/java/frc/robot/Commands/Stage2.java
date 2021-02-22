@@ -3,8 +3,11 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.Commands;
+
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.util.Color;
+import com.revrobotics.ColorMatchResult;
 
 public class Stage2 extends Command {
   int count;
@@ -13,27 +16,27 @@ public class Stage2 extends Command {
   Color detectedColor;
 
   public Stage2() {
-    requires(Robot.colorwheel);
+    requires(Robot.colorWheel);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     //Get the initial color sent from the sensor
-		Color col = Robot.colorwheel.colorSensorV3.getColor(); 
+		Color col = Robot.colorWheel.colorSensorV3.getColor(); 
 
 		//Match the color to one of the four options inside colorMatch
-		initialColor = Robot.colorwheel.m_colorMatcher.matchClosestColor(col).color; 
+		initialColor = Robot.colorWheel.m_colorMatcher.matchClosestColor(col).color; 
 
-		Robot.colorwheel.spinWheel();
+		Robot.colorWheel.spinWheel();
 
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    detectedColor = Robot.colorwheel.colorSensorV3.getColor();
-    match = Robot.colorwheel.m_colorMatcher.matchClosestColor(detectedColor);
+    detectedColor = Robot.colorWheel.colorSensorV3.getColor();
+    match = Robot.colorWheel.m_colorMatcher.matchClosestColor(detectedColor);
     if(match.color == initialColor){
 	    count++; 
     } 
