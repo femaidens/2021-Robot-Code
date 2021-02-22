@@ -3,8 +3,9 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-package frc.robot.commands;
-import frc.Robot.Robot;
+package frc.robot.Commands;
+
+import frc.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -13,7 +14,7 @@ public class ArmsDown extends Command {
   public ArmsDown() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.Climb);
+    requires(Robot.climb);
   }
 
   // Called just before this Command runs the first time

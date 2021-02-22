@@ -8,7 +8,7 @@ package frc.robot;
 public class RobotMap {
     //joystick
 	public static final int drivePort = 0;
-	public static static final int operPort = 1; 
+	public static final int operPort = 1; 
 
 //shooter
 	public static final int shooterNEOPort = 2;
