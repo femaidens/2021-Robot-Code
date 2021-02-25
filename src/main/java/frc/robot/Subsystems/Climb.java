@@ -13,7 +13,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /** Add your docs here. */
@@ -54,7 +53,7 @@ public class Climb extends Subsystem {
   }
 
   public void moveArmsDown(){
-    motor775.set(1.0); //we are not sure about the speed (forward or reverse)
+    motor775.set(1.0); 
     Robot.drivetrain.driveStraight();
   }
 
