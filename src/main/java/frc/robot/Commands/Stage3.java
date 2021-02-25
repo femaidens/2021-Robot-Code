@@ -23,9 +23,9 @@ public class Stage3 extends Command {
   @Override
   protected void initialize() {
     Scanner scan = new Scanner(System.in); 
-		System.out.println("Enter the index (the first index is 0): ");
-		int index = scan.nextInt();
-		target = Robot.colorWheel.list.get((index + 2) % 4);
+    System.out.println("Enter the index (the first index is 0): ");
+    int index = scan.nextInt();
+    target = Robot.colorWheel.list.get((index + 2) % 4);
   }
 
   // Called repeatedly when this Command is scheduled to run
