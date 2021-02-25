@@ -22,14 +22,11 @@ public class Stage2 extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //Get the initial color sent from the sensor
-		Color col = Robot.colorWheel.colorSensorV3.getColor(); 
-
-		//Match the color to one of the four options inside colorMatch
-		initialColor = Robot.colorWheel.m_colorMatcher.matchClosestColor(col).color; 
-
-		Robot.colorWheel.spinWheel();
-
+	//Get the initial color sent from the sensor
+	Color col = Robot.colorWheel.colorSensorV3.getColor(); 
+	//Match the color to one of the four options inside colorMatch
+	initialColor = Robot.colorWheel.m_colorMatcher.matchClosestColor(col).color; 
+	Robot.colorWheel.spinWheel();
   }
 
   // Called repeatedly when this Command is scheduled to run
