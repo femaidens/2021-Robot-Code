@@ -18,10 +18,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /** Add your docs here. */
 public class Shooter extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  	// Put methods for controlling this subsystem
+  	// here. Call these from Commands.
 
-  public CANSparkMax shooterNEO = new CANSparkMax(RobotMap.shooterNEOPort, MotorType.kBrushless);
+  	public CANSparkMax shooterNEO = new CANSparkMax(RobotMap.shooterNEOPort, MotorType.kBrushless);
 	public CANSparkMax hopperExit1 = new CANSparkMax(RobotMap.hopperExit1Port, MotorType.kBrushless);
 	public CANSparkMax hopperExit2 = new CANSparkMax(RobotMap.hopperExit2Port, MotorType.kBrushless);
 
@@ -56,14 +56,14 @@ public class Shooter extends Subsystem {
     	double y_speed = Math.sqrt(19.6 * yDisplacement);
     	double speed = y_speed/Math.sin(angle);
 
-    //speed /= radius;
-    return speed;
+   	 //speed /= radius;
+    	return speed;
   }
     
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+   	 // Set the default command for a subsystem here.
+   	 // setDefaultCommand(new MySpecialCommand());
   }
 }
