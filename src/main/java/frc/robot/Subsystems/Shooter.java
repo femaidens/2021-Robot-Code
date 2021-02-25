@@ -32,29 +32,29 @@ public class Shooter extends Subsystem {
   private final double angle = 0;
   
   public Shooter(){
-		pidController.setP(0.0);
-		pidController.setI(0.0);
-		pidController.setD(0.0);
-    pidController.setOutputRange(0.1, 1.0); 
-    pidController.setFF(0.0);
-    pidController.setIZone(0.0);
+	pidController.setP(0.0);
+	pidController.setI(0.0);
+	pidController.setD(0.0);
+    	pidController.setOutputRange(0.1, 1.0); 
+    	pidController.setFF(0.0);
+    	pidController.setIZone(0.0);
   }
 
   public void spinWheel(double speed) {	
-    hopperExit1.set(0.8);	
-    hopperExit2.set(0.8);
-    pidController.setReference(speed, ControlType.kVelocity);
+    	hopperExit1.set(0.8);	
+    	hopperExit2.set(0.8);
+    	pidController.setReference(speed, ControlType.kVelocity);
   }
     
   public void stop() {
-    shooterNEO.set(0.0);
-    hopperExit1.set(0.0);
-    hopperExit2.set(0.0);
+   	shooterNEO.set(0.0);
+    	hopperExit1.set(0.0);
+    	hopperExit2.set(0.0);
   }
     
   public double calculateSpeed(){ 
-    double y_speed = Math.sqrt(19.6 * yDisplacement);
-    double speed = y_speed/Math.sin(angle);
+    	double y_speed = Math.sqrt(19.6 * yDisplacement);
+    	double speed = y_speed/Math.sin(angle);
 
     //speed /= radius;
     return speed;
