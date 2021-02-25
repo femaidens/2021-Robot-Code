@@ -51,12 +51,12 @@ public class Shooter extends Subsystem {
     	hopperExit1.set(0.0);
     	hopperExit2.set(0.0);
   }
-    
+  
   public double calculateSpeed(){ 
     	double y_speed = Math.sqrt(19.6 * yDisplacement);
     	double speed = y_speed/Math.sin(angle);
 
-   	 //speed /= radius;
+   	speed /= radius;
     	return speed;
   }
     
