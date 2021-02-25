@@ -29,7 +29,7 @@ public class Shooter extends Subsystem {
 
 	private final double yDisplacement = 0;
 	//private final double xDisplacement;
-  private final double angle = 0;
+  	private final double angle = 0;
   
   public Shooter(){
 	pidController.setP(0.0);
