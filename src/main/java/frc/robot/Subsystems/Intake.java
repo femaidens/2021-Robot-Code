@@ -17,11 +17,11 @@ import frc.robot.Subsystems.*;
 /** Add your docs here. */
 public class Intake extends Subsystem {
 
-  public DoubleSolenoid intakePiston = new DoubleSolenoid(RobotMap.intakePistonPort1, RobotMap.intakePistonPort2);
-	public CANSparkMax intakeNEO = new CANSparkMax(RobotMap.intakeNEOPort, MotorType.kBrushless);
+public DoubleSolenoid intakePiston = new DoubleSolenoid(RobotMap.intakePistonPort1, RobotMap.intakePistonPort2);
+public CANSparkMax intakeNEO = new CANSparkMax(RobotMap.intakeNEOPort, MotorType.kBrushless);
 
-	public Intake(){
-	}
+public Intake(){
+}
 	public void extend(){
 		intakePiston.set(DoubleSolenoid.Value.kForward);
 	}
