@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.util.Color;
 import com.revrobotics.ColorMatchResult;
 
 public class Stage2 extends Command {
-  int count;
+  int count = 0;
   Color initialColor;
   ColorMatchResult match;
   Color detectedColor;
