@@ -31,7 +31,7 @@ public class Drivetrain extends Subsystem {
  	 public final int PID_TYPE = 0;
  	 public final int DEFAULT_TIMEOUT = 5;
 
-	public Drivetrain() {
+public Drivetrain() {
 	frontRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
 	middleRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
 	rearRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
