@@ -19,43 +19,43 @@ public class Drivetrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public TalonFX frontRight = new TalonFX(RobotMap.frontRightPort);
+	public TalonFX frontRight = new TalonFX(RobotMap.frontRightPort);
 	public TalonFX frontLeft = new TalonFX(RobotMap.frontLeftPort);
-  public TalonFX middleLeft = new TalonFX(RobotMap.middleLeftPort);
+	public TalonFX middleLeft = new TalonFX(RobotMap.middleLeftPort);
 	public TalonFX rearRight = new TalonFX(RobotMap.rearRightPort);
 	public TalonFX rearLeft = new TalonFX(RobotMap.rearLeftPort);
 	public TalonFX middleRight = new TalonFX(RobotMap.middleRightPort);
 
 	public AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
   
-  public final int PID_TYPE = 0;
-  public final int DEFAULT_TIMEOUT = 5;
+ 	 public final int PID_TYPE = 0;
+ 	 public final int DEFAULT_TIMEOUT = 5;
 
 	public Drivetrain() {
-		frontRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
-    middleRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
-    rearRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
-    frontLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
-		middleLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
-    rearLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
+	frontRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
+	middleRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
+	rearRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
+	frontLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
+	middleLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
+	rearLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
 	}
 
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new DriveTeleop());
-  }
+  	@Override
+  	public void initDefaultCommand() {
+   	 // Set the default command for a subsystem here.
+   	 // setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new DriveTeleop());
+ 	 }
   
-	public void driveTeleop(){
-		double leftJoy = OI.driveJoy.getRawAxis(1);
-		double rightJoy = OI.driveJoy.getRawAxis(5);
-		frontLeft.set(ControlMode.PercentOutput, leftJoy);
-    middleLeft.set(ControlMode.PercentOutput, leftJoy);
-    rearLeft.set(ControlMode.PercentOutput, leftJoy);
-		frontRight.set(ControlMode.PercentOutput, rightJoy);
-	  middleRight.set(ControlMode.PercentOutput, rightJoy);
-    rearRight.set(ControlMode.PercentOutput, rightJoy);
+public void driveTeleop(){
+	double leftJoy = OI.driveJoy.getRawAxis(1);
+	double rightJoy = OI.driveJoy.getRawAxis(5);
+	frontLeft.set(ControlMode.PercentOutput, leftJoy);
+   	middleLeft.set(ControlMode.PercentOutput, leftJoy);
+  	rearLeft.set(ControlMode.PercentOutput, leftJoy);
+	frontRight.set(ControlMode.PercentOutput, rightJoy);
+	middleRight.set(ControlMode.PercentOutput, rightJoy);
+  	rearRight.set(ControlMode.PercentOutput, rightJoy);
   }
 
   public void auton(double speed){
@@ -116,12 +116,12 @@ public class Drivetrain extends Subsystem {
     }
 	}
 
-	public void stop(){
-		frontRight.set(ControlMode.PercentOutput, 0.0);
-    frontLeft.set(ControlMode.PercentOutput, 0.0);
-    middleRight.set(ControlMode.PercentOutput, 0.0);
-    middleLeft.set(ControlMode.PercentOutput, 0.0);
-    rearRight.set(ControlMode.PercentOutput, 0.0);
-    rearLeft.set(ControlMode.PercentOutput, 0.0);
+public void stop(){
+	frontRight.set(ControlMode.PercentOutput, 0.0);
+	frontLeft.set(ControlMode.PercentOutput, 0.0);
+	middleRight.set(ControlMode.PercentOutput, 0.0);
+	middleLeft.set(ControlMode.PercentOutput, 0.0);
+	rearRight.set(ControlMode.PercentOutput, 0.0);
+	rearLeft.set(ControlMode.PercentOutput, 0.0);
   } 
 }
