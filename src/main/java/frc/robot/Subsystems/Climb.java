@@ -23,7 +23,7 @@ public class Climb extends Subsystem {
   public CANSparkMax motor775 = new CANSparkMax(RobotMap.motor775Port, MotorType.kBrushed);
   public CANSparkMax rightNEO = new CANSparkMax(RobotMap.rightNEOPort, MotorType.kBrushed);
   public CANSparkMax leftNEO = new CANSparkMax(RobotMap.leftNEOPort, MotorType.kBrushed);
-	public DoubleSolenoid leftPiston = new DoubleSolenoid(RobotMap.leftPistonPort1, RobotMap.leftPistonPort2);
+  public DoubleSolenoid leftPiston = new DoubleSolenoid(RobotMap.leftPistonPort1, RobotMap.leftPistonPort2);
   public DoubleSolenoid rightPiston = new DoubleSolenoid(RobotMap.rightPistonPort1, RobotMap.rightPistonPort2);
 
   public Climb(){
