@@ -11,8 +11,8 @@ import com.revrobotics.ColorMatchResult;
 
 public class Stage2 extends Command {
   int count;
-	Color initialColor;
-	ColorMatchResult match;
+  Color initialColor;
+  ColorMatchResult match;
   Color detectedColor;
 
   public Stage2() {
