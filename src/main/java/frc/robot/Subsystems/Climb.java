@@ -19,8 +19,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Climb extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
-  public CANSparkMax motor775 = new CANSparkMax(RobotMap.motor775Port, MotorType.kBrushed);
   public CANSparkMax rightNEO = new CANSparkMax(RobotMap.rightNEOPort, MotorType.kBrushed);
   public CANSparkMax leftNEO = new CANSparkMax(RobotMap.leftNEOPort, MotorType.kBrushed);
   public DoubleSolenoid leftPiston = new DoubleSolenoid(RobotMap.leftPistonPort1, RobotMap.leftPistonPort2);
@@ -53,13 +51,11 @@ public class Climb extends Subsystem {
   }
 
   public void moveArmsDown(){
-    motor775.set(1.0); 
     Robot.drivetrain.driveStraight();
   }
 
   public void stop(){
 	  rightNEO.set(0.0);
 	  leftNEO.set(0.0);
-	  motor775.set(0.0);
   }
 }
