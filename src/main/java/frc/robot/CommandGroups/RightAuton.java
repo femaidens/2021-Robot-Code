@@ -18,9 +18,8 @@ public class RightAuton extends CommandGroup {
 		addSequential(new Shoot(), 3); //shoot ball
 		addSequential(new DriveStraightDistance(10)); //back up from wall
 		addSequential(new TurnDegrees(180)); //turn around to face climb area
-
-    addSequential(new TurnDegrees(45)); // guesstimate degrees
+		addSequential(new TurnDegrees(45)); // guesstimate degrees
 		addParallel(new In(), 0.8); 
-    addSequential(new DriveStraightDistance(10)); // distance to the corner of the rendezvous
+    		addSequential(new DriveStraightDistance(10)); // distance to the corner of the rendezvous
   }
 }
